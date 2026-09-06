@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Royale - Luxury Resort & Spa</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <!-- Hero Background -->
+    <div class="fixed inset-0 -z-10 bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center brightness-50"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass px-6 py-4 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-2 text-2xl font-bold tracking-wider text-amber-400 cursor-pointer">
+            <i data-lucide="hotel" class="w-7 h-7"></i>
+            <span>GRAND ROYALE</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+            <button onclick="switchTab('home')" id="nav-home" class="hover:text-amber-400 transition text-amber-400">Home</button>
+            <button onclick="switchTab('about')" id="nav-about" class="hover:text-amber-400 transition">About</button>
+            <button onclick="switchTab('contact')" id="nav-contact" class="hover:text-amber-400 transition">Contact</button>
+            <button onclick="switchTab('help')" id="nav-help" class="hover:text-amber-400 transition">Help</button>
+        </div>
+
+        <!-- Settings Dropdown -->
+        <div class="relative">
+            <button onclick="toggleMenu()" class="p-2.5 rounded-full glass hover:bg-white/10 text-slate-200 transition">
+                <i data-lucide="more-vertical" class="w-5 h-5"></i>
+            </button>
+            <div id="dropdown" class="hidden absolute right-0 mt-3 w-48 glass rounded-2xl p-2 shadow-2xl flex flex-col gap-1 border border-white/10">
+                <button onclick="switchTab('settings')" class="flex items-center gap-3 px-4 py-2.5 text-sm rounded-xl hover:bg-amber-400/20 hover:text-amber-400 transition">
+                    <i data-lucide="settings" class="w-4 h-4"></i> Settings
+                </button>
+                <button onclick="alert('Dark Mode Active')" class="flex items-center gap-3 px-4 py-2.5 text-sm rounded-xl hover:bg-amber-400/20 hover:text-amber-400 transition">
+                    <i data-lucide="moon" class="w-4 h-4"></i> Dark Mode
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 flex-1 flex items-center justify-center">
+
+        <!-- HOME PAGE -->
+        <section id="page-home" class="w-full max-w-4xl text-center flex flex-col items-center">
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-amber-400/10 text-amber-400 border border-amber-400/20 mb-4">World Class Luxury</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight leading-tight">Elevate Your Stay Experience</h1>
+            <p class="text-slate-300 max-w-lg mb-8 text-sm md:text-base">Discover unprecedented comfort, luxury suites, and bespoke hospitality crafted for ultimate relaxation.</p>
+            
+            <div class="w-full glass rounded-3xl p-6 md:p-8 shadow-2xl">
+                <form onsubmit="event.preventDefault(); alert('Searching available luxury suites...');" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    <div>
+                        <label class="text-xs font-medium text-slate-400 mb-2 block">Destination</label>
+                        <div class="flex items-center gap-2 bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2.5">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber-400"></i>
+                            <input type="text" placeholder="Where to?" class="bg-transparent border-none text-sm text-white focus:outline-none w-full" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-slate-400 mb-2 block">Check-In</label>
+                        <div class="flex items-center gap-2 bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2.5">
+                            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
+                            <input type="date" class="bg-transparent border-none text-sm text-white focus:outline-none w-full" required>
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold py-3 rounded-xl transition duration-200 flex items-center justify-center gap-2 text-sm shadow-lg shadow-amber-400/20">
+                            <i data-lucide="search" class="w-4 h-4"></i> Search Resort
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="page-about" class="hidden w-full max-w-2xl glass rounded-3xl p-8 text-center border border-white/10 shadow-2xl">
+            <i data-lucide="award" class="w-12 h-12 text-amber-400 mx-auto mb-4"></i>
+            <h2 class="text-2xl font-bold mb-3">About Grand Royale</h2>
+            <p class="text-slate-300 leading-relaxed text-sm">Founded with a vision to revolutionize hospitality, Grand Royale offers unmatched luxury and world-class services across prime global destinations.</p>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="page-contact" class="hidden w-full max-w-md glass rounded-3xl p-8 border border-white/10 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Get in Touch</h2>
+            <form onsubmit="event.preventDefault(); alert('Message Sent!');" class="flex flex-col gap-4">
+                <div>
+                    <label class="text-xs text-slate-400 mb-1 block">Email</label>
+                    <input type="email" placeholder="john@example.com" class="w-full bg-slate-900/80 border border-white/10 rounded-xl p-3 text-sm focus:outline-none focus:border-amber-400" required>
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400 mb-1 block">Message</label>
+                    <textarea rows="3" placeholder="How can we help?" class="w-full bg-slate-900/80 border border-white/10 rounded-xl p-3 text-sm focus:outline-none focus:border-amber-400" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-amber-400 text-slate-950 font-bold py-3 rounded-xl text-sm hover:bg-amber-500 transition">Send Message</button>
+            </form>
+        </section>
+
+        <!-- HELP PAGE -->
+        <section id="page-help" class="hidden w-full max-w-2xl glass rounded-3xl p-8 border border-white/10 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Help Center</h2>
+            <div class="space-y-4 text-left">
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-white/5">
+                    <h3 class="font-semibold text-amber-400 text-sm">Can I cancel my booking anytime?</h3>
+                    <p class="text-xs text-slate-300 mt-1">Yes, free cancellation is supported up to 24 hours before check-in.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS PAGE -->
+        <section id="page-settings" class="hidden w-full max-w-md glass rounded-3xl p-8 border border-white/10 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Settings</h2>
+            <div class="space-y-4 text-left">
+                <div>
+                    <label class="text-xs text-slate-400 mb-1 block">Preferred Language</label>
+                    <select class="w-full bg-slate-900 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none">
+                        <option>English (US)</option>
+                        <option>Hindi</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass py-6 text-center text-xs text-slate-400 border-t border-white/10">
+        © 2026 Grand Royale Luxury Hotels. All rights reserved.
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        function switchTab(pageId) {
+            ['home', 'about', 'contact', 'help', 'settings'].forEach(p => {
+                document.getElementById('page-' + p).classList.add('hidden');
+                const navBtn = document.getElementById('nav-' + p);
+                if (navBtn) navBtn.classList.remove('text-amber-400');
+            });
+
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if (activeBtn) activeBtn.classList.add('text-amber-400');
+
+            document.getElementById('dropdown').classList.add('hidden');
+        }
+
+        function toggleMenu() {
+            document.getElementById('dropdown').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
